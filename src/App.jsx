@@ -52,15 +52,15 @@ function App() {
 
   return (
     <>
-      <div
+      <div 
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
           width: "100%",
-          height: "100%",
-        }}
-      >
-        <div className="p-2 text-center ">
-          <h1 className="mb-3">Note Management App</h1>
+          height: "auto",
+        }}>
+          
+        <div className="p-3 text-center ">
+          <h1 className="mb-2">Note Management App</h1>
           <div className="d-flex justify-content-center">
             <button
               className="btn btn-primary d-flex align-items-center"
@@ -88,7 +88,7 @@ function App() {
         <EditorModal onSave={handleSave} />
         <div className="container text-center mt-5">
           <Masonry
-            breakpointCols={{ default: 3, 1200: 2, 768: 1 }}
+            breakpointCols={{ default: 3, 1500: 2, 900: 1 }}
             className="my-masonry-grid d-flex"
             columnClassName="my-masonry-grid_column"
           >
