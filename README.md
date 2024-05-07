@@ -1,6 +1,6 @@
 # To Install
 `npm i`
-`nvm use`
+
 
 
 

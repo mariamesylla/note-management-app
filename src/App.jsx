@@ -55,15 +55,15 @@ function App() {
       <div 
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
-          width: "100%",
+          width: "auto",
           height: "auto",
         }}>
           
         <div className="p-3 text-center ">
-          <h1 className="mb-2">Note Management App</h1>
+          <h1 className="mb-5">Note Management App</h1>
           <div className="d-flex justify-content-center">
             <button
-              className="btn btn-primary d-flex align-items-center"
+              className="btn btn-secondary d-flex align-items-center"
               data-bs-toggle="modal"
               data-bs-target="#editormodal"
               onClick={handleAdd}
@@ -76,17 +76,17 @@ function App() {
 
         <div className="position-fixed bottom-0 end-0 m-4 z-2">
           <button
-            className="btn btn-primary d-flex align-items-center"
+            className="btn btn-secondary d-flex align-items-center"
             data-bs-toggle="modal"
             data-bs-target="#editormodal"
             onClick={handleAdd}
           >
-            <span className="pe-3">Add new Note</span>
-            <i className="bi bi-journal-plus fs-2"></i>
+            <span className="pe-2">Add new Note</span>
+            <i className="bi bi-journal-plus fs-3"></i>
           </button>
         </div>
         <EditorModal onSave={handleSave} />
-        <div className="container text-center mt-5">
+        <div className="container text-center mt-4 ">
           <Masonry
             breakpointCols={{ default: 3, 1500: 2, 900: 1 }}
             className="my-masonry-grid d-flex"
