@@ -4,7 +4,6 @@ import Masonry from "react-masonry-css";
 import { useContext, useEffect, useState, useRef } from "react";
 import { EditorContext } from "./components/EditorContext";
 import { nanoid } from "nanoid";
-
 function App() {
   const localNotes = JSON.parse(localStorage.getItem("notes"));
   const [notesArr, setNotesArr] = useState(localNotes ? localNotes : []);
@@ -56,10 +55,11 @@ function App() {
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
           width: "auto",
-          height: "auto",
+          height: "1500px",
         }}>
           
         <div className="p-3 text-center ">
+
           <h1 className="mb-5">Note Management App</h1>
           <div className="d-flex justify-content-center">
             <button
