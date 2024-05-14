@@ -4,9 +4,7 @@ import Masonry from "react-masonry-css";
 import { useContext, useEffect, useState, useRef } from "react";
 import { EditorContext } from "./components/EditorContext";
 import { nanoid } from "nanoid";
-import { LinkContainer } from "react-router-bootstrap";
-
-function App() {
+function Personal() {
   const localNotes = JSON.parse(localStorage.getItem("notes"));
   const [notesArr, setNotesArr] = useState(localNotes ? localNotes : []);
   const updatedId = useRef(null);
@@ -53,18 +51,15 @@ function App() {
 
   return (
     <>
-
-      
-        <div
+      <div 
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
           width: "auto",
           height: "1500px",
-        }}
-      >
-            <a href="./Personal.jsx" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Personal notes</a>
-    <a href="./Work.jsx" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Work Notes</a>
+        }}>
+          
         <div className="p-3 text-center ">
+
           <h1 className="mb-5">Note Management App</h1>
           <div className="d-flex justify-content-center">
             <button
@@ -115,4 +110,4 @@ function App() {
   );
 }
 
-export default App;
+export default Personal;
