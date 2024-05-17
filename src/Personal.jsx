@@ -58,8 +58,40 @@ function Personal() {
           height: "1500px",
         }}>
           
+          <div>
+          
+          <nav className="navbar navbar-light justify-content-between">
+            <div className="px-2">
+              <button
+                type="button"
+                className="btn btn-primary btn-lg disabled me-2"
+              >
+                Personal notes
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary btn-lg disabled"
+              >
+                Work Notes
+              </button>
+              </div>
+              <div className="d-flex justify-content-right me-1">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button
+                  class="btn btn-primary btn-lg disabled my-2 my-sm-0"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </div>
+          </nav>
+        </div>
         <div className="p-3 text-center ">
-
           <h1 className="mb-5">Note Management App</h1>
           <div className="d-flex justify-content-center">
             <button

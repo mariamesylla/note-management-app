@@ -5,10 +5,12 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { EditorContext } from "./components/EditorContext";
 import { nanoid } from "nanoid";
 
+
 function App() {
   const localNotes = JSON.parse(localStorage.getItem("notes"));
   const [notesArr, setNotesArr] = useState(localNotes ? localNotes : []);
   const updatedId = useRef(null);
+  const [items, setItems] = useState([])
 
   const { editorInstanceRef } = useContext(EditorContext);
 
@@ -16,7 +18,7 @@ function App() {
     updatedId.current = null;
     editorInstanceRef.current.clear();
   };
-
+//This function is to save 
   const handleSave = async () => {
     const data = await editorInstanceRef.current.save();
     console.log(data);
@@ -40,7 +42,7 @@ function App() {
       }
     });
   };
-
+// This function is to Delete
   const handleDelete = (idx) => {
     const filteredNotes = notesArr.filter((note) => note.id !== idx);
     setNotesArr(filteredNotes);
@@ -52,19 +54,47 @@ function App() {
 
   return (
     <>
-
-      
-        <div
+      <div
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
           width: "auto",
           height: "1500px",
         }}
       >
-
-      <button type="button" class="btn btn-primary btn-lg btn-block">Personal notes</button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Work Notes</button>
-
+        <div>
+          
+          <nav className="navbar navbar-light justify-content-between">
+            <div className="px-2">
+              <form></form>
+              <button
+                type="button"
+                className="btn btn-primary btn-lg disabled me-2"
+              >
+                Personal notes
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary btn-lg disabled"
+              >
+                Work Notes
+              </button>
+              </div>
+              <div className="d-flex justify-content-right me-1">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button
+                  class="btn btn-primary btn-lg disabled my-2 my-sm-0"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </div>
+          </nav>
+        </div>
         <div className="p-3 text-center ">
           <h1 className="mb-5">Note Management App</h1>
           <div className="d-flex justify-content-center">
