@@ -53,8 +53,7 @@ function App() {
   }, [notesArr]);
 
   return (
-    <>
-      <div
+    <div
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
           width: "auto",
@@ -142,7 +141,6 @@ function App() {
           </Masonry>
         </div>
       </div>
-    </>
   );
 }
 
