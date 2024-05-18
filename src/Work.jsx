@@ -1,3 +1,5 @@
+import React from "react";
+
 import EditorModal from "./components/EditorModal";
 import Card from "./components/Card";
 import Masonry from "react-masonry-css";

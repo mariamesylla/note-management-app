@@ -1,3 +1,5 @@
+import React from "react";
+
 import EditorModal from "./components/EditorModal";
 import Card from "./components/Card";
 import Masonry from "react-masonry-css";
@@ -90,20 +92,6 @@ function Personal() {
                 </button>
               </div>
           </nav>
-        </div>
-        <div className="p-3 text-center ">
-          <h1 className="mb-5">Note Management App</h1>
-          <div className="d-flex justify-content-center">
-            <button
-              className="btn btn-secondary d-flex align-items-center"
-              data-bs-toggle="modal"
-              data-bs-target="#editormodal"
-              onClick={handleAdd}
-            >
-              <span className="pe-1">Add new Note</span>
-              <i className="bi bi-journal-plus fs-4"></i>
-            </button>
-          </div>
         </div>
 
         <div className="position-fixed bottom-0 end-0 m-4 z-2">
