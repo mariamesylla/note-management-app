@@ -53,46 +53,8 @@ function Work() {
 
   return (
     <>
-      <div 
-        style={{
-          backgroundImage: `url("src/components/bg.avif")`,
-          width: "auto",
-          height: "1500px",
-        }}>
-          
-          <div>
-          
-          <nav className="navbar navbar-light justify-content-between">
-            <div className="px-2">
-              <button
-                type="button"
-                className="btn btn-primary btn-lg disabled me-2"
-              >
-                Personal notes
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary btn-lg disabled"
-              >
-                Work Notes
-              </button>
-              </div>
-              <div className="d-flex justify-content-right me-1">
-                <input
-                  class="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button
-                  class="btn btn-primary btn-lg disabled my-2 my-sm-0"
-                  type="submit"
-                >
-                  Search
-                </button>
-              </div>
-          </nav>
-        </div>
+      
+        
 
         <div className="position-fixed bottom-0 end-0 m-4 z-2">
           <button
@@ -125,7 +87,6 @@ function Work() {
             })}
           </Masonry>
         </div>
-      </div>
     </>
   );
 }
