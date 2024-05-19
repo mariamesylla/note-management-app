@@ -106,7 +106,7 @@ function Work() {
           </nav>
         </div>
         <div className="p-3 text-center">
-          <h1 className="mb-5">Note Management App</h1>
+          <h1 className="mb-5">Work Notes</h1>
           <div className="d-flex justify-content-center">
             <button
               className="btn btn-secondary d-flex align-items-center"
