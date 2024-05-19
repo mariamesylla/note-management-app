@@ -86,7 +86,7 @@ function Personal() {
                 Work Notes
               </Link>
               <Link to="/" className="btn btn-primary btn-lg">
-                Home
+              <i class="bi bi-house-fill"></i>
               </Link>
             </div>
             <div className="d-flex justify-content-right me-1">
@@ -106,7 +106,7 @@ function Personal() {
           </nav>
         </div>
         <div className="p-3 text-center">
-          <h1 className="mb-5">Note Management App</h1>
+          <h1 className="mb-5">My Personal Notes</h1>
           <div className="d-flex justify-content-center">
             <button
               className="btn btn-secondary d-flex align-items-center"

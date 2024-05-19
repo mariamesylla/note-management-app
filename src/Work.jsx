@@ -86,7 +86,7 @@ function Work() {
                 Work Notes
               </Link>
               <Link to="/" className="btn btn-primary btn-lg">
-                Home
+              <i class="bi bi-house-fill"></i>
               </Link>
             </div>
             <div className="d-flex justify-content-right me-1">
