@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import EditorModal from "./components/EditorModal";
 import Card from "./components/Card";
 import Masonry from "react-masonry-css";
@@ -38,7 +38,6 @@ function Personal() {
         JSON.stringify([
           data,
           ...allNotes.filter((note) => note.type !== "personal"),
-          ...notesArr,
         ])
       );
     }
@@ -80,20 +79,15 @@ function Personal() {
         <div>
           <nav className="navbar navbar-light justify-content-between">
             <div className="px-2">
-              <button
-                type="button"
-                className="btn btn-primary btn-lg me-2"
-                onClick={handlePersonalNotesClick}
-              >
+              <Link to="/personal" className="btn btn-primary btn-lg me-2">
                 Personal Notes
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary btn-lg"
-                onClick={handleWorkNotesClick}
-              >
+              </Link>
+              <Link to="/work" className="btn btn-primary btn-lg me-2">
                 Work Notes
-              </button>
+              </Link>
+              <Link to="/" className="btn btn-primary btn-lg">
+                Home
+              </Link>
             </div>
             <div className="d-flex justify-content-right me-1">
               <input
@@ -114,25 +108,18 @@ function Personal() {
         <div className="p-3 text-center">
           <h1 className="mb-5">Note Management App</h1>
           <div className="d-flex justify-content-center">
-            {/* Replace hard-coded navigation with Link */}
-            <Link to="/personal" className="btn btn-secondary d-flex align-items-center">
-              <span className="pe-1">Add new Note</span>
-              <i className="bi bi-journal-plus fs-4"></i>
-            </Link>
+            <button
+              className="btn btn-secondary d-flex align-items-center"
+              data-bs-toggle="modal"
+              data-bs-target="#editormodal"
+              onClick={handleAdd}
+            >
+              <span className="pe-2">Add new Note</span>
+              <i className="bi bi-journal-plus fs-3"></i>
+            </button>
           </div>
         </div>
 
-        <div className="position-fixed bottom-0 end-0 m-4 z-2">
-          <button
-            className="btn btn-secondary d-flex align-items-center"
-            data-bs-toggle="modal"
-            data-bs-target="#editormodal"
-            onClick={handleAdd}
-          >
-            <span className="pe-2">Add new Note</span>
-            <i className="bi bi-journal-plus fs-3"></i>
-          </button>
-        </div>
         <EditorModal onSave={handleSave} />
         <div className="container text-center mt-4">
           <Masonry
