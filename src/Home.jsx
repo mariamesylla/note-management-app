@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EditorModal from "./components/EditorModal";
 import Card from "./components/Card";
 import Masonry from "react-masonry-css";
@@ -7,13 +7,12 @@ import { EditorContext } from "./components/EditorContext";
 import { nanoid } from "nanoid";
 
 function Home() {
-  const localNotes = JSON.parse(localStorage.getItem("notes"));
-  const [notesArr, setNotesArr] = useState(localNotes ? localNotes : []);
+  const localNotes = JSON.parse(localStorage.getItem("notes")) || [];
+  const [notesArr, setNotesArr] = useState(localNotes);
   const updatedId = useRef(null);
-  const [searchQuery, setSearchQuery] = useState(""); // State to keep track of the search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { editorInstanceRef } = useContext(EditorContext);
-  const navigate = useNavigate(); // Use the useNavigate hook
 
   const handleAdd = () => {
     updatedId.current = null;
@@ -22,7 +21,6 @@ function Home() {
 
   const handleSave = async () => {
     const data = await editorInstanceRef.current.save();
-    console.log(data);
     if (updatedId.current) {
       handleDelete(updatedId.current);
       data.id = updatedId.current;
@@ -33,19 +31,16 @@ function Home() {
     data.blocks.length && setNotesArr((prev) => [data, ...prev]);
   };
 
-  const handleEdit = (idx) => {
-    updatedId.current = idx;
-    notesArr.map((note) => {
-      if (note.id === idx) {
-        editorInstanceRef.current.render({
-          blocks: note.blocks,
-        });
-      }
+  const handleEdit = (id) => {
+    updatedId.current = id;
+    const noteToEdit = notesArr.find((note) => note.id === id);
+    editorInstanceRef.current.render({
+      blocks: noteToEdit.blocks,
     });
   };
 
-  const handleDelete = (idx) => {
-    const filteredNotes = notesArr.filter((note) => note.id !== idx);
+  const handleDelete = (id) => {
+    const filteredNotes = notesArr.filter((note) => note.id !== id);
     setNotesArr(filteredNotes);
   };
 
@@ -57,45 +52,32 @@ function Home() {
     setSearchQuery(e.target.value.toLowerCase());
   };
 
-  const handlePersonalNotesClick = () => {
-    navigate("/personal");
-  };
-
-  const handleWorkNotesClick = () => {
-    navigate("/work");
-  };
-
-  const filteredNotes = notesArr.filter(note =>
-    note.blocks.some(block =>
-      block.data.text.toLowerCase().includes(searchQuery)
-    )
+  const filteredNotes = notesArr.filter((note) =>
+    note.blocks.some((block) => block.data.text?.toLowerCase().includes(searchQuery))
   );
 
   return (
     <div
       style={{
         backgroundImage: `url("src/components/bg.avif")`,
-        width: "auto",
-        height: "1500px",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100vw",
+        height: "100vh",
       }}
     >
       <div>
         <nav className="navbar navbar-light justify-content-between">
           <div className="px-2">
-            <button
-              type="button"
-              className="btn btn-primary btn-lg me-2"
-              onClick={handlePersonalNotesClick}
-            >
+            <Link to="/personal" className="btn btn-primary btn-lg me-2">
               Personal Notes
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary btn-lg"
-              onClick={handleWorkNotesClick}
-            >
+            </Link>
+            <Link to="/work" className="btn btn-primary btn-lg me-2">
               Work Notes
-            </button>
+            </Link>
+            <Link to="/" className="btn btn-primary btn-lg">
+              <i className="bi bi-house-fill"></i>
+            </Link>
           </div>
           <div className="d-flex justify-content-right me-1">
             <input
@@ -148,17 +130,15 @@ function Home() {
           className="my-masonry-grid d-flex"
           columnClassName="my-masonry-grid_column"
         >
-          {filteredNotes.map((note) => {
-            return (
-              <Card
-                blocks={note.blocks}
-                idx={note.id}
-                key={note.id}
-                onDelete={handleDelete}
-                onEdit={handleEdit}
-              />
-            );
-          })}
+          {filteredNotes.map((note) => (
+            <Card
+              key={note.id}
+              blocks={note.blocks}
+              idx={note.id}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+          ))}
         </Masonry>
       </div>
     </div>

@@ -72,8 +72,10 @@ function Work() {
       <div
         style={{
           backgroundImage: `url("src/components/bg.avif")`,
-          width: "auto",
-          height: "1500px",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          width: '100vw',
+          height: '100vh',
         }}
       >
         <div>

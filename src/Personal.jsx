@@ -70,11 +70,13 @@ function Personal() {
   return (
     <>
       <div
-        style={{
-          backgroundImage: `url("src/components/bg.avif")`,
-          width: "auto",
-          height: "1500px",
-        }}
+       style={{
+        backgroundImage: `url("src/components/bg.avif")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100vw',
+        height: '100vh',
+      }}
       >
         <div>
           <nav className="navbar navbar-light justify-content-between">
