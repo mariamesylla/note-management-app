@@ -28,7 +28,11 @@ function Home() {
     } else {
       data.id = nanoid(10);
     }
-    data.blocks.length && setNotesArr((prev) => [data, ...prev]);
+    if (data.blocks.length) {
+      setNotesArr((prev) => [data, ...prev]);
+      const allNotes = JSON.parse(localStorage.getItem("notes")) || [];
+      localStorage.setItem("notes", JSON.stringify([data, ...allNotes]));
+    }
   };
 
   const handleEdit = (id) => {
@@ -42,10 +46,14 @@ function Home() {
   const handleDelete = (id) => {
     const filteredNotes = notesArr.filter((note) => note.id !== id);
     setNotesArr(filteredNotes);
+    const allNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    const updatedAllNotes = allNotes.filter((note) => note.id !== id);
+    localStorage.setItem("notes", JSON.stringify(updatedAllNotes));
   };
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notesArr));
+    const allNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    localStorage.setItem("notes", JSON.stringify(allNotes));
   }, [notesArr]);
 
   const handleSearch = (e) => {
@@ -112,17 +120,6 @@ function Home() {
         </div>
       </div>
 
-      <div className="position-fixed bottom-0 end-0 m-4 z-2">
-        <button
-          className="btn btn-secondary d-flex align-items-center"
-          data-bs-toggle="modal"
-          data-bs-target="#editormodal"
-          onClick={handleAdd}
-        >
-          <span className="pe-2">Add new Note</span>
-          <i className="bi bi-journal-plus fs-3"></i>
-        </button>
-      </div>
       <EditorModal onSave={handleSave} />
       <div className="container text-center mt-4">
         <Masonry
